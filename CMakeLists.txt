@@ -14,13 +14,15 @@ add_subdirectory(uorb)
 link_libraries(uorb)
 include_directories(uorb/include)
 
-# Generate uorb message
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/msg)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/msg)
-link_libraries(uorb_examples_msgs)
-
 # pthread
 find_package(Threads REQUIRED)
 link_libraries(Threads::Threads)
 
-add_executable(uorb_cpp_example main.cpp)
+# Generate uorb message
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/msg)
+
+add_executable(uorb_cpp_example cpp_pub_sub_example.cpp)
+target_link_libraries(uorb_cpp_example uorb_examples_msgs)
+target_include_directories(uorb_cpp_example PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/msg)
+
+add_executable(uorb_quick_define_example orb_quick_define_example.cpp)
