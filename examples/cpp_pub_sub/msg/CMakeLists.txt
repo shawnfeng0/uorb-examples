@@ -53,7 +53,7 @@ foreach (msg_file ${msg_files})
     list(APPEND uorb_sources ${msg_source_out_path}/${msg}.cc)
 endforeach ()
 
-set(tools_root ${CMAKE_CURRENT_SOURCE_DIR}/../uorb/tools/msg)
+set(tools_root ${CMAKE_CURRENT_SOURCE_DIR}/../../../uorb/tools/msg)
 
 # Generate uORB headers
 add_custom_command(OUTPUT ${uorb_headers}
