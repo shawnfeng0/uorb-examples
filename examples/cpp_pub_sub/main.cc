@@ -13,7 +13,7 @@
 #include "ulog/ulog.h"
 
 void *thread_publisher(void *arg) {
-  uorb::PublicationData<uorb::msg::example_string, 3> pub_example_string;
+  uorb::PublicationData<uorb::msg::example_string> pub_example_string;
 
   for (int i = 0; i < 10; i++) {
     snprintf((char *)pub_example_string.get().string,

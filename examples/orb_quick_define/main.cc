@@ -12,7 +12,7 @@
 #include "orb_topic.h"
 
 void *thread_publisher(void *arg) {
-  uorb::PublicationData<uorb::msg::example_struct_number, 3> publication_data;
+  uorb::PublicationData<uorb::msg::example_struct_number> publication_data;
 
   for (int i = 0; i < 10; i++) {
     publication_data.get().num_int16 += 1;
