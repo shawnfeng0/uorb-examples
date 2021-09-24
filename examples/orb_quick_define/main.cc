@@ -3,13 +3,13 @@
 //
 
 #include <pthread.h>
-#include <ulog/ulog.h>
 #include <unistd.h>
 #include <uorb/publication.h>
 #include <uorb/subscription.h>
 #include <uorb/uorb.h>
 
 #include "orb_topic.h"
+#include "slog.h"
 
 void *thread_publisher(void *arg) {
   uorb::PublicationData<uorb::msg::example_struct_number> publication_data;
@@ -46,7 +46,9 @@ void *thread_subscriber(void *unused) {
     if (0 < orb_poll(pollfds, ARRAY_SIZE(pollfds), timeout_ms)) {
       if (subscription_data.Update()) {
         auto data = subscription_data.get();
-        LOGGER_MULTI_TOKEN(data.num_int16, data.num_int32, data.num_int64);
+        LOGGER_DEBUG(
+            "data.num_int16 = %d, data.num_int32 = %d, data.num_int64 = %ld",
+            data.num_int16, data.num_int32, data.num_int64);
       }
     } else {
       LOGGER_WARN("Got no data within %d milliseconds", 2000);

@@ -4,10 +4,6 @@ project(uorb-examples)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# ulog library
-add_subdirectory(ulog)
-link_libraries(ulog)
-
 # uorb library
 add_subdirectory(uorb)
 link_libraries(uorb)
